@@ -1,0 +1,280 @@
+# Regras de Desenvolvimento e Geração de Commits
+
+## 1. Objetivo
+
+Estabelecer convenções de idioma, nomenclatura e versionamento para garantir consistência, rastreabilidade e qualidade no desenvolvimento.
+
+As regras de commit devem ser aplicadas ao gerar mensagens manualmente ou por meio dos recursos automáticos do editor.
+
+## 2. Idiomas e Nomenclatura
+
+- **Código-fonte:** utilizar inglês para classes, interfaces, métodos, propriedades, variáveis, DTOs, enums e demais identificadores técnicos.
+- **Banco de dados:** utilizar inglês para tabelas, colunas, índices, constraints, procedures, functions e views.
+- **APIs:** utilizar inglês nos endpoints, parâmetros e contratos.
+- **Interface do usuário:** utilizar português brasileiro (pt-BR).
+- **Mensagens de validação:** utilizar pt-BR quando destinadas ao usuário.
+- **Logs técnicos:** preferencialmente em inglês, utilizando mensagens objetivas e estruturadas.
+- **Documentação funcional e SDD:** utilizar pt-BR, preservando termos técnicos consagrados.
+- **Mensagens de commit:** utilizar pt-BR, mantendo os tipos e escopos do Conventional Commits em inglês.
+
+Não misturar idiomas em identificadores técnicos. Preservar consistência dos conceitos de domínio em toda a aplicação.
+
+## 3. Estilo das Mensagens de Commit
+
+- Utilizar português brasileiro com ortografia e acentuação corretas.
+- Escrever de maneira direta, objetiva e tecnicamente precisa.
+- Evitar linguagem promocional, exageros e clichês associados a textos gerados por IA.
+- Não utilizar travessões para separar frases.
+- Não mencionar prompts, agentes, planos internos ou ferramentas de IA, exceto quando fizerem parte da alteração realizada.
+- Não inventar funcionalidades, testes, métricas, resultados ou benefícios.
+- Descrever as alterações efetivamente presentes no código.
+- Evitar palavras genéricas como "melhorias", "ajustes diversos" e "atualizações gerais" quando houver uma descrição mais precisa.
+
+## 4. Formato do Título
+
+Seguir Conventional Commits:
+
+`tipo(escopo): descrição objetiva em português`
+
+Regras obrigatórias:
+
+- Preferir títulos com até 50 caracteres.
+- Respeitar o limite máximo de 60 caracteres, incluindo tipo, escopo, espaços e pontuação.
+- Utilizar verbos de ação no infinitivo e em minúsculas.
+- Não terminar o título com ponto final.
+- Não utilizar reticências (`...`) nem caractere de elipse (`…`).
+- Não abreviar artificialmente palavras para respeitar o limite.
+- Não quebrar o título em múltiplas linhas.
+- Não utilizar tags HTML ou XML.
+- Não acrescentar detalhes secundários desnecessários.
+
+### 4.1. Regra obrigatória de título completo
+
+O título deve expressar uma alteração completa e compreensível, sem depender do corpo da mensagem para completar seu sentido.
+
+Caso ultrapasse o limite de caracteres:
+
+1. Identificar a alteração principal.
+2. Remover expressões redundantes.
+3. Substituir descrições extensas por expressões equivalentes e mais curtas.
+4. Reescrever o título preservando o significado técnico.
+5. Transferir detalhes secundários para o corpo.
+6. Conferir novamente o comprimento antes de retornar a mensagem.
+
+**PROIBIDO:**
+
+- Cortar palavras ou frases ao atingir o limite.
+- Acrescentar reticências para indicar continuação.
+- Encerrar a mensagem com preposições ou expressões incompletas.
+- Remover informações essenciais que alterem o significado.
+- Gerar títulos truncados por conveniência.
+
+Exemplo incorreto:
+
+`feat(quotations): adicionar geração de orçamentos com...`
+
+Exemplo correto:
+
+`feat(quotations): adicionar geração de orçamentos`
+
+O limite deve ser atendido por reformulação, nunca por truncamento.
+
+## 5. Tipos de Commit
+
+Utilizar os tipos de Conventional Commits conforme a natureza predominante da alteração.
+
+| Tipo       | Utilização                                           |
+| ---------- | ---------------------------------------------------- |
+| `feat`     | Nova funcionalidade ou comportamento                 |
+| `fix`      | Correção de defeito                                  |
+| `refactor` | Reestruturação sem alteração funcional               |
+| `perf`     | Otimização comprovável de desempenho                 |
+| `test`     | Criação ou manutenção de testes                      |
+| `docs`     | Alterações exclusivamente documentais                |
+| `chore`    | Manutenção técnica e tarefas auxiliares              |
+| `ci`       | Alterações em pipelines e automações                 |
+| `build`    | Alterações no processo de compilação ou dependências |
+| `revert`   | Reversão de alterações anteriores                    |
+
+Regras adicionais:
+
+- Não classificar toda alteração como `feat`.
+- Não utilizar `perf` sem evidências de melhoria.
+- Não utilizar `refactor` quando houver mudança intencional de comportamento.
+- Escolher o tipo com base no resultado real, não na quantidade de arquivos modificados.
+
+## 6. Escopos
+
+O escopo deve representar o módulo, domínio, serviço ou componente afetado.
+
+Exemplos:
+
+- `auth`
+- `customers`
+- `catalog`
+- `quotations`
+- `api`
+- `database`
+- `integrations`
+- `ui`
+- `config`
+- `deps`
+
+Regras:
+
+- Utilizar inglês e letras minúsculas.
+- Preferir termos curtos e consistentes.
+- Utilizar hífen somente em nomes compostos.
+- Reutilizar escopos existentes quando apropriado.
+- Não inventar escopos que não correspondam às alterações.
+- Omitir o escopo quando a mudança afetar diversos módulos sem um componente predominante.
+
+## 7. Corpo da Mensagem
+
+Separar o título do corpo por uma linha em branco.
+
+O corpo deve ser proporcional à complexidade da alteração e explicar informações relevantes que não estejam claras no título.
+
+### 7.1. Alterações simples
+
+O corpo é opcional.
+
+Para alterações pequenas e evidentes, utilizar somente o título quando ele representar adequadamente a mudança.
+
+Exemplo:
+
+`chore(deps): atualizar dependências do projeto`
+
+### 7.2. Alterações funcionais
+
+Quando necessário, adicionar um parágrafo curto explicando:
+
+- O problema ou necessidade atendida.
+- O comportamento implementado.
+- O impacto funcional identificado.
+
+Não repetir o título com outras palavras.
+
+### 7.3. Alterações relevantes
+
+Para mudanças que envolvam múltiplos componentes, contratos, banco de dados ou regras de negócio, utilizar um parágrafo introdutório e, quando útil, uma lista de alterações concretas.
+
+Evitar detalhamento arquivo por arquivo quando isso não contribuir para o entendimento.
+
+### 7.4. Refatorações e migrações
+
+Quando houver mudança arquitetural relevante, explicar as diferenças práticas.
+
+**Abordagem anterior:**
+
+- Descrever o comportamento ou a estrutura anterior, quando verificável.
+
+**Nova abordagem:**
+
+- Explicar o que mudou e a razão técnica da alteração.
+
+Não afirmar redução de consumo, aumento de desempenho ou maior estabilidade sem evidência.
+
+### 7.5. Restrições do corpo
+
+- Utilizar português brasileiro com acentuação.
+- Não criar seções vazias.
+- Não gerar listas artificiais.
+- Não repetir informações já presentes no título.
+- Não utilizar títulos decorativos.
+- Não incluir tags HTML ou XML.
+- Não mencionar testes aprovados sem comprovação.
+- Não inventar métricas ou resultados.
+- Não produzir corpos extensos para mudanças triviais.
+
+## 8. Análise das Alterações do Git
+
+Antes de gerar uma mensagem:
+
+1. Examinar o diff ou as alterações disponibilizadas pelo editor.
+2. Identificar o propósito principal da mudança.
+3. Verificar se a alteração representa funcionalidade, correção, refatoração ou manutenção.
+4. Determinar o tipo e o escopo apropriados.
+5. Descrever somente informações verificáveis nas alterações.
+6. Considerar o comportamento anterior apenas quando houver evidência.
+7. Gerar um título completo, preciso e conciso.
+8. Conferir o limite de caracteres e a ausência de truncamentos.
+9. Acrescentar corpo somente quando agregar informação útil.
+
+Quando a geração estiver baseada nas alterações preparadas para commit, considerar exclusivamente os arquivos incluídos no stage.
+
+Não descrever alterações de arquivos não incluídos no commit.
+
+Caso as informações disponíveis sejam insuficientes, utilizar uma descrição conservadora em vez de inventar justificativas.
+
+## 9. Formato de Saída e Execução
+
+- Retornar exclusivamente o texto da mensagem de commit.
+- Não adicionar explicações antes ou depois.
+- Não envolver a mensagem em blocos Markdown.
+- Não inserir aspas externas.
+- Não inserir tags XML ou HTML, como `<message>` ou `<commit>`.
+- Não incluir comentários de planejamento interno.
+- Não executar `git add`, `git commit`, `git push` ou alterações no stage sem autorização explícita.
+- Não dividir automaticamente alterações em múltiplos commits sem autorização.
+- Não modificar código-fonte apenas para adequá-lo à mensagem gerada.
+
+## 10. Exemplos
+
+### Nova funcionalidade
+
+`feat(quotations): adicionar cálculo de descontos`
+
+Implementa o cálculo de descontos nos itens do orçamento, considerando os limites estabelecidos pelas regras de negócio.
+
+### Correção de defeito
+
+`fix(quotations): corrigir total do orçamento`
+
+Corrige a atualização do valor total quando a quantidade de um item é modificada.
+
+### Refatoração
+
+`refactor(auth): separar validação de tokens`
+
+Abordagem anterior:
+
+- A validação estava incorporada ao fluxo de autenticação.
+
+Nova abordagem:
+
+- A validação foi isolada em um componente específico, permitindo reutilização e manutenção independente.
+
+### Integração externa
+
+`feat(integrations): integrar consulta de CEP`
+
+Adiciona consulta de endereços por CEP e tratamento para respostas inválidas ou indisponibilidade do serviço.
+
+### Manutenção simples
+
+`chore(deps): atualizar dependências do projeto`
+
+### Testes
+
+`test(quotations): cobrir cálculo de totais`
+
+### Documentação
+
+`docs: documentar configuração do ambiente`
+
+## 11. Verificação Final
+
+Antes de retornar qualquer mensagem de commit, conferir obrigatoriamente:
+
+- O tipo representa corretamente a alteração?
+- O escopo está adequado?
+- A descrição está em português brasileiro?
+- O título possui no máximo 60 caracteres?
+- O título está completo, sem cortes ou reticências?
+- A mensagem corresponde às alterações reais?
+- O corpo acrescenta contexto relevante, sem repetições?
+- Há alguma afirmação não comprovada?
+- O resultado está livre de tags e formatação desnecessária?
+
+Se qualquer item falhar, corrigir a mensagem antes de retorná-la.
